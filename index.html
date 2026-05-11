@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giro di Pizza - The Taste Tour Through Italy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body class="vintage-theme">
+    <div class="loader">
+        <div class="loader-content">
+            <h1 class="loader-title">Giro di Pizza</h1>
+            <p class="loader-subtitle">Riscaldando il forno...</p>
+        </div>
+    </div>
+    <header class="editorial-header">
+        <div class="header-left">Est. 2024</div>
+        <div class="header-center">Giro di Pizza</div>
+        <div class="header-right"><a href="#tickets" class="header-cta">Reserve</a></div>
+    </header>
+    <main>
+        <section id="hero" class="section-hero">
+            <div class="hero-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=1920&q=80" alt="Wood fired pizza oven" class="hero-img parallax-bg">
+                <div class="grain-overlay"></div>
+            </div>
+            <div class="hero-content">
+                <div class="vintage-label">Il Festival Gastronomico</div>
+                <h1 class="hero-title">A Taste Tour <br><em>Through</em> Italy</h1>
+                <p class="hero-subtitle">The Pizza Regions Festival</p>
+                <p class="hero-desc">Отправьтесь в гастрономическое путешествие по родине пиццы. От дровяных печей Неаполя до хрустящих противней Рима.</p>
+            </div>
+        </section>
+        <section id="map-section" class="section-map">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="editorial-heading">La Mappa <br><em>del Gusto</em></h2>
+                    <p class="editorial-subheading">Наведите или кликните на регион, чтобы раскрыть его секреты.</p>
+                </div>
+                <div class="map-layout">
+                    <div class="map-container" id="d3-map-container"></div>
+                    <div class="map-info-panel">
+                        <div class="vintage-card" id="region-card">
+                            <div class="card-border">
+                                <span class="region-number">No. 01</span>
+                                <h3 id="region-title" class="card-title">Campania</h3>
+                                <div class="ornament">~ 🍅 ~</div>
+                                <h4 id="pizza-type" class="card-subtitle">Pizza Napoletana</h4>
+                                <p id="pizza-ingredients" class="card-ingredients">Томаты Сан-Марцано, Моцарелла ди Буфала, Базилик</p>
+                                <div class="separator-line"></div>
+                                <p id="pizza-desc" class="card-body">Классика, рожденная в Неаполе. Выпекается 60 секунд в дровяной печи при 400°C.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="journey" class="section-journey">
+            <div class="journey-item">
+                <div class="journey-text">
+                    <span class="chapter-num">Capitolo I</span>
+                    <h2 class="journey-title">Napoli, <br><em>Campania</em></h2>
+                    <p class="journey-desc">Настоящая неаполитанская пицца — это искусство простоты. Мягкое тесто с леопардовой корочкой, сладкие томаты и свежайшая моцарелла.</p>
+                    <ul class="ingredient-list">
+                        <li>Томаты Сан-Марцано</li>
+                        <li>Моцарелла ди Буфала</li>
+                        <li>Свежий базилик</li>
+                    </ul>
+                </div>
+                <div class="journey-image">
+                    <img src="https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?auto=format&fit=crop&w=800&q=80" alt="Neapolitan Pizza">
+                </div>
+            </div>
+            <div class="journey-item reverse">
+                <div class="journey-text">
+                    <span class="chapter-num">Capitolo II</span>
+                    <h2 class="journey-title">Roma, <br><em>Lazio</em></h2>
+                    <p class="journey-desc">Pizza al Taglio. Хрустящая, плотная, прямоугольная. Римская пицца выпекается на противне и отрезается ножницами ровно столько, сколько вы пожелаете.</p>
+                    <ul class="ingredient-list">
+                        <li>Хрустящее тесто</li>
+                        <li>Оливковое масло</li>
+                        <li>Разнообразие топпингов</li>
+                    </ul>
+                </div>
+                <div class="journey-image">
+                    <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=800&q=80" alt="Pizza al Taglio">
+                </div>
+            </div>
+        </section>
+        <section id="program" class="section-program">
+            <div class="container">
+                <div class="menu-board">
+                    <h2 class="menu-title">Il Programma</h2>
+                    <div class="menu-subtitle">Расписание Фестиваля</div>
+                    <div class="menu-list">
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-name">Tastings & Pairings</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-time">12:00 - 16:00</span>
+                            </div>
+                            <p class="menu-item-desc">Дегустация 5 региональных стилей с винным сопровождением.</p>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-name">Wood-Fired Oven Show</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-time">16:30 - 18:00</span>
+                            </div>
+                            <p class="menu-item-desc">Мастер-класс от неаполитанских маэстро по работе с огнем.</p>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-name">Regional Chef Talks</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-time">18:30 - 20:00</span>
+                            </div>
+                            <p class="menu-item-desc">Секреты идеального теста от шефов со всей Италии.</p>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-name">Live Music & Festa</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-time">20:00 - Late</span>
+                            </div>
+                            <p class="menu-item-desc">Итальянская живая музыка, вино и бесконечная пицца.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section-chefs">
+            <h2 class="editorial-heading text-center mb-5">I Maestri</h2>
+            <div class="chef-grid">
+                <div class="chef-card">
+                    <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=600&q=80" alt="Chef Marco">
+                    <div class="chef-info">
+                        <h3>Marco Rossi</h3>
+                        <p class="chef-region">Campania</p>
+                        <p class="chef-quote">"Пицца — это не рецепт, это чувство."</p>
+                    </div>
+                </div>
+                <div class="chef-card mt-4">
+                    <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=600&q=80" alt="Chef Elena">
+                    <div class="chef-info">
+                        <h3>Elena Bianchi</h3>
+                        <p class="chef-region">Lazio</p>
+                        <p class="chef-quote">"Хруст римской пиццы — это музыка Рима."</p>
+                    </div>
+                </div>
+                <div class="chef-card">
+                    <img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&w=600&q=80" alt="Chef Giovanni">
+                    <div class="chef-info">
+                        <h3>Giovanni Conti</h3>
+                        <p class="chef-region">Sicilia</p>
+                        <p class="chef-quote">"Сфинчионе — это объятие сицилийской бабушки."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section-cards overflow-hidden">
+            <div class="cards-track">
+                <div class="taste-card"><div class="taste-card-inner"><span class="taste-badge">Classico</span><h3>Margherita</h3><p>Campania</p></div></div>
+                <div class="taste-card"><div class="taste-card-inner"><span class="taste-badge">Croccante</span><h3>Al Taglio</h3><p>Lazio</p></div></div>
+                <div class="taste-card"><div class="taste-card-inner"><span class="taste-badge">Rustico</span><h3>Focaccia</h3><p>Liguria</p></div></div>
+                <div class="taste-card"><div class="taste-card-inner"><span class="taste-badge">Ricca</span><h3>Sfincione</h3><p>Sicilia</p></div></div>
+            </div>
+        </section>
+        <section class="section-atmosphere">
+            <div class="atmosphere-grid">
+                <div class="atm-item large"><img src="https://images.unsplash.com/photo-1555072956-7758afb20e8f?auto=format&fit=crop&w=800&q=80" alt="Oven Fire"></div>
+                <div class="atm-item text-block"><h2 class="editorial-heading">Fuoco e <br><em>Passione</em></h2><p>Почувствуйте жар печи, аромат томатов и тепло итальянской улицы. Это не просто еда, это образ жизни.</p></div>
+                <div class="atm-item small"><img src="https://images.unsplash.com/photo-1590947132387-155cc3ddf6b9?auto=format&fit=crop&w=500&q=80" alt="Fresh Basil"></div>
+                <div class="atm-item medium"><img src="https://images.unsplash.com/photo-1541592102400-14e286278d54?auto=format&fit=crop&w=600&q=80" alt="Pizza Dough"></div>
+            </div>
+        </section>
+        <section id="tickets" class="section-tickets">
+            <div class="container text-center">
+                <h2 class="editorial-heading">Unisciti a Noi</h2>
+                <p class="editorial-subheading mb-4">Выберите свой формат участия в фестивале</p>
+                <div class="ticket-options">
+                    <div class="ticket">
+                        <div class="ticket-edge-top"></div>
+                        <h3>Single Tasting</h3>
+                        <p class="price">€25</p>
+                        <p class="ticket-desc">Вход + 2 куска пиццы + напиток</p>
+                        <button class="btn-vintage">Reserve</button>
+                        <div class="ticket-edge-bottom"></div>
+                    </div>
+                    <div class="ticket premium">
+                        <div class="ticket-edge-top"></div>
+                        <h3>Full Regional Tour</h3>
+                        <p class="price">€65</p>
+                        <p class="ticket-desc">Безлимитная дегустация + мастер-класс</p>
+                        <button class="btn-vintage">Reserve</button>
+                        <div class="ticket-edge-bottom"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="vintage-footer">
+        <div class="footer-content">
+            <div class="footer-logo">Giro di Pizza</div>
+            <div class="footer-details">
+                <p>15-17 Maggio 2024</p>
+                <p>Piazza del Gusto, Milano, IT</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Instagram</a><a href="#">Press</a><a href="#">Contact</a>
+            </div>
+            <div class="footer-ornament">🍕 🌿 🍅</div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
