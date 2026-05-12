@@ -17,9 +17,6 @@
 </head>
 <body class="editorial-theme">
 
-    <!-- Custom Cursor / Route Marker -->
-    <div class="custom-cursor" id="custom-cursor"></div>
-
     <!-- 1. Loader / Intro -->
     <div class="loader" id="loader">
         <div class="loader-inner">
@@ -34,19 +31,21 @@
     </div>
 
     <!-- 2. Fixed Editorial Header -->
-    <header class="editorial-header" id="header">
-        <div class="header-left font-sans">Est. 2026</div>
-        <div class="header-center font-display">Giro di Pizza</div>
-        <div class="header-right font-sans"><a href="#tickets" class="header-btn magnetic-btn" data-strength="20">Билеты</a></div>
+    <header class="editorial-header header--light" id="header">
+        <div class="header-inner">
+            <div class="header-left font-sans">Est. 2026</div>
+            <div class="header-center font-display">Giro di Pizza</div>
+            <div class="header-right font-sans"><a href="#tickets" class="header-btn">Билеты</a></div>
+        </div>
     </header>
 
     <main id="smooth-wrapper">
         <div id="smooth-content">
 
             <!-- 3. Cinematic Hero -->
-            <section id="hero" class="section-hero">
+            <section id="hero" class="section-hero" data-header-theme="light">
                 <div class="hero-bg-wrapper">
-                    <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=1920&q=80" alt="Итальянская пиццерия, дровяная печь" class="hero-bg-img" id="hero-img">
+                    <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=1920&q=80" alt="Итальянская пиццерия, дровяная печь" class="hero-bg-img" id="hero-img" onerror="this.onerror=null;this.classList.add('img-error');">
                     <div class="hero-overlay"></div>
                 </div>
 
@@ -56,27 +55,28 @@
                         <span class="line"><span class="word">Giro</span> <span class="word">di</span></span>
                         <span class="line"><span class="word">Pizza</span></span>
                     </h1>
-                    <h2 class="hero-subtitle font-display italic reveal-text">Гастрономическое путешествие по Италии через пиццу</h2>
 
-                    <div class="hero-details">
-                        <p class="hero-desc font-text reveal-text delay-1">Фестиваль региональных вкусов, дровяных печей и итальянских традиций. От мягкой неаполитанской корочки до хрустящей римской Pizza al Taglio — один маршрут, двадцать регионов и сотни оттенков вкуса.</p>
-                        <div class="hero-meta font-sans reveal-text delay-2">
+                    <div class="hero-details bg-dark-glass">
+                        <h2 class="hero-subtitle font-display italic reveal-text cream">Гастрономическое путешествие по Италии через пиццу</h2>
+                        <p class="hero-desc font-text reveal-text delay-1 cream">Фестиваль региональных вкусов, дровяных печей и итальянских традиций. От мягкой неаполитанской корочки до хрустящей римской Pizza al Taglio — один маршрут, двадцать регионов и сотни оттенков вкуса.</p>
+                        <div class="hero-meta font-sans reveal-text delay-2 cream">
                             <span>Москва &middot; 15–17 мая 2026</span>
                         </div>
-                        <div class="hero-cta reveal-text delay-3">
-                            <a href="#map" class="btn-stamp primary magnetic-btn" data-strength="30">Начать путешествие</a>
-                            <a href="#tickets" class="btn-stamp secondary magnetic-btn" data-strength="30">Забронировать билет</a>
-                        </div>
+                    </div>
+
+                    <div class="hero-cta reveal-text delay-3 mt-4">
+                        <a href="#map" class="btn-stamp primary magnetic-btn">Начать путешествие</a>
+                        <a href="#tickets" class="btn-stamp secondary magnetic-btn">Забронировать билет</a>
                     </div>
                 </div>
             </section>
 
             <!-- 4. Interactive Italy Map -->
-            <section id="map" class="section-map">
+            <section id="map" class="section-map" data-header-theme="dark">
                 <div class="container-map">
                     <div class="map-header">
-                        <h2 class="section-title font-display">La Mappa <br><span class="italic tomato">del Gusto</span></h2>
-                        <p class="section-subtitle font-sans">Выберите регион Италии и откройте его фирменную пиццу.</p>
+                        <h2 class="section-title font-display dark-wood">La Mappa <br><span class="italic tomato">del Gusto</span></h2>
+                        <p class="section-subtitle font-sans olive">Выберите регион Италии и откройте его фирменную пиццу.</p>
                     </div>
 
                     <div class="map-layout">
@@ -107,7 +107,7 @@
 
                                     <div class="passport-footer">
                                         <div class="red-stamp" id="passport-stamp">Дровяная печь</div>
-                                        <a href="#journey" class="btn-text magnetic-btn" data-strength="15">Изучить регион &rarr;</a>
+                                        <a href="#journey" class="btn-text">Изучить регион &rarr;</a>
                                     </div>
                                 </div>
                             </div>
@@ -117,215 +117,229 @@
             </section>
 
             <!-- 5. Regional Magazine Journey -->
-            <section id="journey" class="section-journey">
+            <section id="journey" class="section-journey" data-header-theme="light">
                 <div class="journey-intro text-center mb-6">
-                    <h2 class="section-title font-display">Маршрут вкуса</h2>
-                    <p class="section-subtitle font-sans">Каждый регион Италии говорит на своем языке теста, огня и локальных ингредиентов.</p>
+                    <h2 class="section-title font-display cream">Маршрут вкуса</h2>
+                    <p class="section-subtitle font-sans dough">Каждый регион Италии говорит на своем языке теста, огня и локальных ингредиентов.</p>
                 </div>
 
                 <div class="journey-chapters">
                     <!-- Chapter 1: Campania -->
-                    <div class="chapter-spread" id="chapter-campania">
-                        <div class="chapter-content bg-cream">
+                    <div class="chapter-spread bg-cream dark-text" id="chapter-campania">
+                        <div class="chapter-content">
                             <div class="chapter-meta">
                                 <span class="chapter-num font-sans tomato">Capitolo I</span>
                                 <div class="chapter-icon">
                                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--tomato-red)" stroke-width="1.5"><path d="M12 21a9 9 0 0 0 9-9 9 9 0 0 0-9-9 9 9 0 0 0-9 9 9 9 0 0 0 9 9Z"/><path d="M12 21a9 9 0 0 0 9-9c0-1.5-.5-2.8-1.3-4L12 3 4.3 8C3.5 9.2 3 10.5 3 12a9 9 0 0 0 9 9Z"/><path d="M12 3v18"/></svg>
                                 </div>
                             </div>
-                            <h2 class="chapter-region font-display">Campania, <br><span class="italic">Napoli</span></h2>
-                            <h3 class="chapter-pizza font-sans">Pizza Napoletana</h3>
-                            <p class="chapter-desc font-text">Неаполитанская пицца — это ритуал огня, мягкого теста и абсолютной простоты. Леопардовая корочка, сладкие томаты Сан-Марцано, моцарелла ди буфала и свежий базилик создают вкус, который стал символом Италии.</p>
+                            <div class="chapter-text-body">
+                                <h2 class="chapter-region font-display dark-wood">Campania, <br><span class="italic tomato">Napoli</span></h2>
+                                <h3 class="chapter-pizza font-sans dark-wood">Pizza Napoletana</h3>
+                                <p class="chapter-desc font-text dark-wood">Неаполитанская пицца — это ритуал огня, мягкого теста и абсолютной простоты. Леопардовая корочка, сладкие томаты Сан-Марцано, моцарелла ди буфала и свежий базилик создают вкус, который стал символом Италии.</p>
 
-                            <div class="ingredients-list">
-                                <div class="ingredient-item font-text italic">томаты Сан-Марцано</div>
-                                <div class="ingredient-item font-text italic">моцарелла ди буфала</div>
-                                <div class="ingredient-item font-text italic">свежий базилик</div>
-                                <div class="ingredient-item font-text italic">оливковое масло extra virgin</div>
+                                <div class="ingredients-list">
+                                    <div class="ingredient-item font-text italic olive">томаты Сан-Марцано</div>
+                                    <div class="ingredient-item font-text italic olive">моцарелла ди буфала</div>
+                                    <div class="ingredient-item font-text italic olive">свежий базилик</div>
+                                    <div class="ingredient-item font-text italic olive">оливковое масло extra virgin</div>
+                                </div>
+
+                                <div class="stamp-accent tomato border-tomato">Дровяная печь</div>
                             </div>
-
-                            <div class="stamp-accent tomato">Дровяная печь</div>
                         </div>
                         <div class="chapter-image">
                             <div class="img-reveal-wrapper">
-                                <img src="https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?auto=format&fit=crop&w=1200&q=80" alt="Pizza Napoletana" class="prlx-img">
+                                <img src="https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?auto=format&fit=crop&w=1200&q=80" alt="Pizza Napoletana" class="prlx-img" loading="lazy" onerror="this.onerror=null;this.classList.add('img-error');">
                             </div>
                         </div>
                     </div>
 
                     <!-- Chapter 2: Lazio -->
-                    <div class="chapter-spread reverse" id="chapter-lazio">
-                        <div class="chapter-content bg-dough">
+                    <div class="chapter-spread reverse bg-dough dark-text" id="chapter-lazio">
+                        <div class="chapter-content">
                             <div class="chapter-meta">
                                 <span class="chapter-num font-sans olive">Capitolo II</span>
                                 <div class="chapter-icon">
                                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--olive-green)" stroke-width="1.5"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
                                 </div>
                             </div>
-                            <h2 class="chapter-region font-display">Lazio, <br><span class="italic">Roma</span></h2>
-                            <h3 class="chapter-pizza font-sans">Pizza al Taglio</h3>
-                            <p class="chapter-desc font-text">В Риме пиццу режут ножницами, продают по весу и едят на ходу. Pizza al Taglio — это хрустящая прямоугольная основа, щедрые начинки и ритм городской улицы.</p>
+                            <div class="chapter-text-body">
+                                <h2 class="chapter-region font-display dark-wood">Lazio, <br><span class="italic olive">Roma</span></h2>
+                                <h3 class="chapter-pizza font-sans dark-wood">Pizza al Taglio</h3>
+                                <p class="chapter-desc font-text dark-wood">В Риме пиццу режут ножницами, продают по весу и едят на ходу. Pizza al Taglio — это хрустящая прямоугольная основа, щедрые начинки и ритм городской улицы.</p>
 
-                            <div class="ingredients-list">
-                                <div class="ingredient-item font-text italic">хрустящее тесто</div>
-                                <div class="ingredient-item font-text italic">оливковое масло</div>
-                                <div class="ingredient-item font-text italic">морская соль</div>
-                                <div class="ingredient-item font-text italic">сезонные начинки</div>
+                                <div class="ingredients-list">
+                                    <div class="ingredient-item font-text italic tomato">хрустящее тесто</div>
+                                    <div class="ingredient-item font-text italic tomato">оливковое масло</div>
+                                    <div class="ingredient-item font-text italic tomato">морская соль</div>
+                                    <div class="ingredient-item font-text italic tomato">сезонные начинки</div>
+                                </div>
+
+                                <div class="stamp-accent olive border-olive">Римский хруст</div>
                             </div>
-
-                            <div class="stamp-accent olive">Римский хруст</div>
                         </div>
                         <div class="chapter-image">
                             <div class="img-reveal-wrapper">
-                                <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=1200&q=80" alt="Pizza al Taglio" class="prlx-img">
+                                <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=1200&q=80" alt="Pizza al Taglio" class="prlx-img" loading="lazy" onerror="this.onerror=null;this.classList.add('img-error');">
                             </div>
                         </div>
                     </div>
 
                     <!-- Chapter 3: Sicilia -->
-                    <div class="chapter-spread" id="chapter-sicilia">
-                        <div class="chapter-content bg-brick dark-text">
+                    <div class="chapter-spread bg-brick cream-text" id="chapter-sicilia">
+                        <div class="chapter-content">
                             <div class="chapter-meta">
                                 <span class="chapter-num font-sans cream">Capitolo III</span>
                                 <div class="chapter-icon">
                                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--warm-cream)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
                                 </div>
                             </div>
-                            <h2 class="chapter-region font-display cream">Sicilia, <br><span class="italic">Palermo</span></h2>
-                            <h3 class="chapter-pizza font-sans dough">Sfincione</h3>
-                            <p class="chapter-desc font-text cream">Сицилийский Sfincione — мягкий, плотный и насыщенный вариант пиццы. Томатный соус, лук, анчоусы, орегано и хлебные крошки создают южный вкус с характером уличного рынка.</p>
+                            <div class="chapter-text-body">
+                                <h2 class="chapter-region font-display cream">Sicilia, <br><span class="italic dough">Palermo</span></h2>
+                                <h3 class="chapter-pizza font-sans dough">Sfincione</h3>
+                                <p class="chapter-desc font-text cream">Сицилийский Sfincione — мягкий, плотный и насыщенный вариант пиццы. Томатный соус, лук, анчоусы, орегано и хлебные крошки создают южный вкус с характером уличного рынка.</p>
 
-                            <div class="ingredients-list cream">
-                                <div class="ingredient-item font-text italic">томатный соус</div>
-                                <div class="ingredient-item font-text italic">лук</div>
-                                <div class="ingredient-item font-text italic">анчоусы</div>
-                                <div class="ingredient-item font-text italic">хлебные крошки</div>
-                                <div class="ingredient-item font-text italic">орегано</div>
+                                <div class="ingredients-list">
+                                    <div class="ingredient-item font-text italic cream">томатный соус</div>
+                                    <div class="ingredient-item font-text italic cream">лук</div>
+                                    <div class="ingredient-item font-text italic cream">анчоусы</div>
+                                    <div class="ingredient-item font-text italic cream">хлебные крошки</div>
+                                    <div class="ingredient-item font-text italic cream">орегано</div>
+                                </div>
+
+                                <div class="stamp-accent cream border-cream">Рынок Палермо</div>
                             </div>
-
-                            <div class="stamp-accent cream border-cream">Рынок Палермо</div>
                         </div>
                         <div class="chapter-image">
                             <div class="img-reveal-wrapper">
-                                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1200&q=80" alt="Sfincione in Palermo" class="prlx-img">
+                                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1200&q=80" alt="Sfincione in Palermo" class="prlx-img" loading="lazy" onerror="this.onerror=null;this.classList.add('img-error');">
                             </div>
                         </div>
                     </div>
 
                     <!-- Chapter 4: Puglia -->
-                    <div class="chapter-spread reverse" id="chapter-puglia">
-                        <div class="chapter-content bg-olive dark-text">
+                    <div class="chapter-spread reverse bg-olive cream-text" id="chapter-puglia">
+                        <div class="chapter-content">
                             <div class="chapter-meta">
                                 <span class="chapter-num font-sans dough">Capitolo IV</span>
                                 <div class="chapter-icon">
                                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--baked-dough)" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
                                 </div>
                             </div>
-                            <h2 class="chapter-region font-display cream">Puglia, <br><span class="italic">Bari</span></h2>
-                            <h3 class="chapter-pizza font-sans dough">Focaccia Barese</h3>
-                            <p class="chapter-desc font-text cream">В Апулии тесто встречается с оливковым маслом, томатами черри и морской солью. Focaccia Barese мягкая внутри, слегка хрустящая снаружи и наполненная южным солнцем.</p>
+                            <div class="chapter-text-body">
+                                <h2 class="chapter-region font-display cream">Puglia, <br><span class="italic dough">Bari</span></h2>
+                                <h3 class="chapter-pizza font-sans dough">Focaccia Barese</h3>
+                                <p class="chapter-desc font-text cream">В Апулии тесто встречается с оливковым маслом, томатами черри и морской солью. Focaccia Barese мягкая внутри, слегка хрустящая снаружи и наполненная южным солнцем.</p>
 
-                            <div class="ingredients-list cream">
-                                <div class="ingredient-item font-text italic">томаты черри</div>
-                                <div class="ingredient-item font-text italic">оливки</div>
-                                <div class="ingredient-item font-text italic">оливковое масло</div>
-                                <div class="ingredient-item font-text italic">морская соль</div>
-                                <div class="ingredient-item font-text italic">орегано</div>
+                                <div class="ingredients-list">
+                                    <div class="ingredient-item font-text italic cream">томаты черри</div>
+                                    <div class="ingredient-item font-text italic cream">оливки</div>
+                                    <div class="ingredient-item font-text italic cream">оливковое масло</div>
+                                    <div class="ingredient-item font-text italic cream">морская соль</div>
+                                    <div class="ingredient-item font-text italic cream">орегано</div>
+                                </div>
+
+                                <div class="stamp-accent tomato border-tomato">Южное солнце</div>
                             </div>
-
-                            <div class="stamp-accent tomato border-tomato">Южное солнце</div>
                         </div>
                         <div class="chapter-image">
                             <div class="img-reveal-wrapper">
-                                <img src="https://images.unsplash.com/photo-1590947132387-155cc3ddf6b9?auto=format&fit=crop&w=1200&q=80" alt="Focaccia Barese ingredients" class="prlx-img">
+                                <img src="https://images.unsplash.com/photo-1590947132387-155cc3ddf6b9?auto=format&fit=crop&w=1200&q=80" alt="Focaccia Barese ingredients" class="prlx-img" loading="lazy" onerror="this.onerror=null;this.classList.add('img-error');">
                             </div>
                         </div>
                     </div>
 
                     <!-- Chapter 5: Liguria -->
-                    <div class="chapter-spread" id="chapter-liguria">
-                        <div class="chapter-content bg-cream">
+                    <div class="chapter-spread bg-cream dark-text" id="chapter-liguria">
+                        <div class="chapter-content">
                             <div class="chapter-meta">
                                 <span class="chapter-num font-sans basil">Capitolo V</span>
                                 <div class="chapter-icon">
                                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--basil-green)" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM12 2v20M2 12h20"/></svg>
                                 </div>
                             </div>
-                            <h2 class="chapter-region font-display">Liguria, <br><span class="italic">Genova</span></h2>
-                            <h3 class="chapter-pizza font-sans basil">Sardenaira / Focaccia Genovese</h3>
-                            <p class="chapter-desc font-text">Лигурия превращает простоту в элегантность. Оливковое масло, травы, чеснок и мягкая золотистая основа создают прибрежный вкус — легкий, ароматный и очень локальный.</p>
+                            <div class="chapter-text-body">
+                                <h2 class="chapter-region font-display dark-wood">Liguria, <br><span class="italic basil">Genova</span></h2>
+                                <h3 class="chapter-pizza font-sans dark-wood">Sardenaira / Focaccia Genovese</h3>
+                                <p class="chapter-desc font-text dark-wood">Лигурия превращает простоту в элегантность. Оливковое масло, травы, чеснок и мягкая золотистая основа создают прибрежный вкус — легкий, ароматный и очень локальный.</p>
 
-                            <div class="ingredients-list">
-                                <div class="ingredient-item font-text italic">оливковое масло</div>
-                                <div class="ingredient-item font-text italic">чеснок</div>
-                                <div class="ingredient-item font-text italic">травы</div>
-                                <div class="ingredient-item font-text italic">оливки</div>
-                                <div class="ingredient-item font-text italic">анчоусы</div>
+                                <div class="ingredients-list">
+                                    <div class="ingredient-item font-text italic olive">оливковое масло</div>
+                                    <div class="ingredient-item font-text italic olive">чеснок</div>
+                                    <div class="ingredient-item font-text italic olive">травы</div>
+                                    <div class="ingredient-item font-text italic olive">оливки</div>
+                                    <div class="ingredient-item font-text italic olive">анчоусы</div>
+                                </div>
+
+                                <div class="stamp-accent basil border-basil">Прибрежный вкус</div>
                             </div>
-
-                            <div class="stamp-accent basil">Прибрежный вкус</div>
                         </div>
                         <div class="chapter-image">
                             <div class="img-reveal-wrapper">
-                                <img src="https://images.unsplash.com/photo-1627308595229-7830f5c9e66f?auto=format&fit=crop&w=1200&q=80" alt="Liguria Focaccia" class="prlx-img">
+                                <img src="https://images.unsplash.com/photo-1627308595229-7830f5c9e66f?auto=format&fit=crop&w=1200&q=80" alt="Liguria Focaccia" class="prlx-img" loading="lazy" onerror="this.onerror=null;this.classList.add('img-error');">
                             </div>
                         </div>
                     </div>
 
                     <!-- Chapter 6: Toscana -->
-                    <div class="chapter-spread reverse" id="chapter-toscana">
-                        <div class="chapter-content bg-terracotta dark-text">
+                    <div class="chapter-spread reverse bg-terracotta cream-text" id="chapter-toscana">
+                        <div class="chapter-content">
                             <div class="chapter-meta">
                                 <span class="chapter-num font-sans dough">Capitolo VI</span>
                                 <div class="chapter-icon">
                                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--baked-dough)" stroke-width="1.5"><path d="M12 2L2 22h20L12 2z"/></svg>
                                 </div>
                             </div>
-                            <h2 class="chapter-region font-display cream">Toscana, <br><span class="italic">Firenze</span></h2>
-                            <h3 class="chapter-pizza font-sans dark-wood-text">Schiacciata</h3>
-                            <p class="chapter-desc font-text cream">Тоскана ценит сдержанность. Schiacciata — золотистая лепешка с оливковым маслом, морской солью и розмарином. В ней нет лишнего, только аромат теста, земли и трав.</p>
+                            <div class="chapter-text-body">
+                                <h2 class="chapter-region font-display cream">Toscana, <br><span class="italic dark-wood-text">Firenze</span></h2>
+                                <h3 class="chapter-pizza font-sans dark-wood-text">Schiacciata</h3>
+                                <p class="chapter-desc font-text cream">Тоскана ценит сдержанность. Schiacciata — золотистая лепешка с оливковым маслом, морской солью и розмарином. В ней нет лишнего, только аромат теста, земли и трав.</p>
 
-                            <div class="ingredients-list cream">
-                                <div class="ingredient-item font-text italic">розмарин</div>
-                                <div class="ingredient-item font-text italic">оливковое масло</div>
-                                <div class="ingredient-item font-text italic">морская соль</div>
-                                <div class="ingredient-item font-text italic">деревенское тесто</div>
+                                <div class="ingredients-list">
+                                    <div class="ingredient-item font-text italic cream">розмарин</div>
+                                    <div class="ingredient-item font-text italic cream">оливковое масло</div>
+                                    <div class="ingredient-item font-text italic cream">морская соль</div>
+                                    <div class="ingredient-item font-text italic cream">деревенское тесто</div>
+                                </div>
+
+                                <div class="stamp-accent dark-wood border-dark-wood">Деревенское тесто</div>
                             </div>
-
-                            <div class="stamp-accent dark-wood border-dark-wood">Деревенское тесто</div>
                         </div>
                         <div class="chapter-image">
                             <div class="img-reveal-wrapper">
-                                <img src="https://images.unsplash.com/photo-1541592102400-14e286278d54?auto=format&fit=crop&w=1200&q=80" alt="Toscana Schiacciata" class="prlx-img">
+                                <img src="https://images.unsplash.com/photo-1541592102400-14e286278d54?auto=format&fit=crop&w=1200&q=80" alt="Toscana Schiacciata" class="prlx-img" loading="lazy" onerror="this.onerror=null;this.classList.add('img-error');">
                             </div>
                         </div>
                     </div>
 
                     <!-- Chapter 7: Emilia-Romagna -->
-                    <div class="chapter-spread" id="chapter-emilia">
-                        <div class="chapter-content bg-cream">
+                    <div class="chapter-spread bg-cream dark-text" id="chapter-emilia">
+                        <div class="chapter-content">
                             <div class="chapter-meta">
                                 <span class="chapter-num font-sans brick">Capitolo VII</span>
                                 <div class="chapter-icon">
                                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--deep-brick)" stroke-width="1.5"><path d="M12 2a10 10 0 1 0 10 10 10 10 0 0 0-10-10zM12 12L22 12M12 12L6 4.5M12 12L6 19.5"/></svg>
                                 </div>
                             </div>
-                            <h2 class="chapter-region font-display">Emilia-Romagna, <br><span class="italic">Bologna</span></h2>
-                            <h3 class="chapter-pizza font-sans brick">Piadina</h3>
-                            <p class="chapter-desc font-text">Piadina — не пицца в строгом смысле, но она говорит на том же языке: тесто, жар и щедрость. Теплая лепешка с прошутто, мягким сыром и рукколой раскрывает уют Эмилии-Романьи.</p>
+                            <div class="chapter-text-body">
+                                <h2 class="chapter-region font-display dark-wood">Emilia-Romagna, <br><span class="italic brick">Bologna</span></h2>
+                                <h3 class="chapter-pizza font-sans brick">Piadina</h3>
+                                <p class="chapter-desc font-text dark-wood">Piadina — не пицца в строгом смысле, но она говорит на том же языке: тесто, жар и щедрость. Теплая лепешка с прошутто, мягким сыром и рукколой раскрывает уют Эмилии-Романьи.</p>
 
-                            <div class="ingredients-list">
-                                <div class="ingredient-item font-text italic">прошутто</div>
-                                <div class="ingredient-item font-text italic">руккола</div>
-                                <div class="ingredient-item font-text italic">мягкий сыр</div>
-                                <div class="ingredient-item font-text italic">теплая лепешка</div>
+                                <div class="ingredients-list">
+                                    <div class="ingredient-item font-text italic olive">прошутто</div>
+                                    <div class="ingredient-item font-text italic olive">руккола</div>
+                                    <div class="ingredient-item font-text italic olive">мягкий сыр</div>
+                                    <div class="ingredient-item font-text italic olive">теплая лепешка</div>
+                                </div>
+
+                                <div class="stamp-accent brick border-brick">Теплая лепешка</div>
                             </div>
-
-                            <div class="stamp-accent brick">Теплая лепешка</div>
                         </div>
                         <div class="chapter-image">
                             <div class="img-reveal-wrapper">
-                                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1200&q=80" alt="Piadina Emilia Romagna" class="prlx-img">
+                                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1200&q=80" alt="Piadina Emilia Romagna" class="prlx-img" loading="lazy" onerror="this.onerror=null;this.classList.add('img-error');">
                             </div>
                         </div>
                     </div>
@@ -333,10 +347,10 @@
             </section>
 
             <!-- 6. Pizza Atlas -->
-            <section id="atlas" class="section-atlas">
+            <section id="atlas" class="section-atlas" data-header-theme="dark">
                 <div class="container text-center">
-                    <h2 class="section-title font-display">Атлас пиццы</h2>
-                    <p class="section-subtitle font-sans">Двадцать регионов, двадцать локальных историй и один маршрут через тесто, огонь и традиции.</p>
+                    <h2 class="section-title font-display dark-wood">Атлас пиццы</h2>
+                    <p class="section-subtitle font-sans olive mx-auto">Двадцать регионов, двадцать локальных историй и один маршрут через тесто, огонь и традиции.</p>
                 </div>
 
                 <div class="atlas-horizontal-scroll" id="atlas-scroll-container">
@@ -347,7 +361,7 @@
             </section>
 
             <!-- 7. Festival Program -->
-            <section id="program" class="section-program">
+            <section id="program" class="section-program" data-header-theme="dark">
                 <div class="container">
                     <div class="menu-board-wrapper">
                         <div class="menu-board">
@@ -366,12 +380,12 @@
                             <div class="program-content">
                                 <!-- Day 1 -->
                                 <div class="program-day active" id="day1">
-                                    <h3 class="day-title font-display italic text-center mb-5">Открываем печь</h3>
+                                    <h3 class="day-title font-display italic text-center mb-5 dark-wood">Открываем печь</h3>
 
                                     <div class="menu-item">
                                         <div class="menu-row">
                                             <span class="menu-time font-sans tomato">12:00</span>
-                                            <span class="menu-name font-display bold">Региональный дегустационный маршрут</span>
+                                            <span class="menu-name font-display bold dark-wood">Региональный дегустационный маршрут</span>
                                             <span class="menu-dots"></span>
                                         </div>
                                         <p class="menu-desc font-text italic olive">Первые станции фестиваля: Неаполь, Рим, Палермо и Бари.</p>
@@ -380,7 +394,7 @@
                                     <div class="menu-item">
                                         <div class="menu-row">
                                             <span class="menu-time font-sans tomato">14:00</span>
-                                            <span class="menu-name font-display bold">Мастер-класс по неаполитанскому тесту</span>
+                                            <span class="menu-name font-display bold dark-wood">Мастер-класс по неаполитанскому тесту</span>
                                             <span class="menu-dots"></span>
                                         </div>
                                         <p class="menu-desc font-text italic olive">Пиццайоло показывает работу с тестом, влажностью и высокой температурой печи.</p>
@@ -390,7 +404,7 @@
                                     <div class="menu-item">
                                         <div class="menu-row">
                                             <span class="menu-time font-sans tomato">16:30</span>
-                                            <span class="menu-name font-display bold">Wood-Fired Oven Show</span>
+                                            <span class="menu-name font-display bold dark-wood">Wood-Fired Oven Show</span>
                                             <span class="menu-dots"></span>
                                         </div>
                                         <p class="menu-desc font-text italic olive">Живое приготовление в дровяной печи и дегустация прямо с огня.</p>
@@ -399,7 +413,7 @@
                                     <div class="menu-item">
                                         <div class="menu-row">
                                             <span class="menu-time font-sans tomato">18:00</span>
-                                            <span class="menu-name font-display bold">Аперитив и пицца-пейринг</span>
+                                            <span class="menu-name font-display bold dark-wood">Аперитив и пицца-пейринг</span>
                                             <span class="menu-dots"></span>
                                         </div>
                                         <p class="menu-desc font-text italic olive">Локальные закуски, вино и пицца в формате итальянского аперитива.</p>
@@ -408,7 +422,7 @@
                                     <div class="menu-item">
                                         <div class="menu-row">
                                             <span class="menu-time font-sans tomato">20:00</span>
-                                            <span class="menu-name font-display bold">Итальянский джаз во дворе</span>
+                                            <span class="menu-name font-display bold dark-wood">Итальянский джаз во дворе</span>
                                             <span class="menu-dots"></span>
                                         </div>
                                         <p class="menu-desc font-text italic olive">Вечерняя программа, музыка и открытая кухня.</p>
@@ -417,12 +431,12 @@
 
                                 <!-- Day 2 -->
                                 <div class="program-day" id="day2">
-                                    <h3 class="day-title font-display italic text-center mb-5">Региональный маршрут</h3>
+                                    <h3 class="day-title font-display italic text-center mb-5 dark-wood">Региональный маршрут</h3>
 
                                     <div class="menu-item">
                                         <div class="menu-row">
                                             <span class="menu-time font-sans tomato">11:00</span>
-                                            <span class="menu-name font-display bold">Campania & Lazio Tastings</span>
+                                            <span class="menu-name font-display bold dark-wood">Campania & Lazio Tastings</span>
                                             <span class="menu-dots"></span>
                                         </div>
                                         <p class="menu-desc font-text italic olive">Неаполитанская мягкость и римский хруст в одном дегустационном блоке.</p>
@@ -431,7 +445,7 @@
                                     <div class="menu-item">
                                         <div class="menu-row">
                                             <span class="menu-time font-sans tomato">13:00</span>
-                                            <span class="menu-name font-display bold">Сицилийский рыночный стол</span>
+                                            <span class="menu-name font-display bold dark-wood">Сицилийский рыночный стол</span>
                                             <span class="menu-dots"></span>
                                         </div>
                                         <p class="menu-desc font-text italic olive">Sfincione, томаты, анчоусы, орегано и южная уличная атмосфера.</p>
@@ -440,7 +454,7 @@
                                     <div class="menu-item">
                                         <div class="menu-row">
                                             <span class="menu-time font-sans tomato">15:00</span>
-                                            <span class="menu-name font-display bold">Сессия оливкового масла Puglia</span>
+                                            <span class="menu-name font-display bold dark-wood">Сессия оливкового масла Puglia</span>
                                             <span class="menu-dots"></span>
                                         </div>
                                         <p class="menu-desc font-text italic olive">Как масло меняет тесто, аромат и финальный вкус.</p>
@@ -449,7 +463,7 @@
                                     <div class="menu-item">
                                         <div class="menu-row">
                                             <span class="menu-time font-sans tomato">17:00</span>
-                                            <span class="menu-name font-display bold">Разговоры с пиццайоло</span>
+                                            <span class="menu-name font-display bold dark-wood">Разговоры с пиццайоло</span>
                                             <span class="menu-dots"></span>
                                         </div>
                                         <p class="menu-desc font-text italic olive">Шефы рассказывают о локальных традициях и ошибках в приготовлении пиццы.</p>
@@ -458,7 +472,7 @@
                                     <div class="menu-item">
                                         <div class="menu-row">
                                             <span class="menu-time font-sans tomato">20:00</span>
-                                            <span class="menu-name font-display bold">Festa in Piazza</span>
+                                            <span class="menu-name font-display bold dark-wood">Festa in Piazza</span>
                                             <span class="menu-dots"></span>
                                         </div>
                                         <p class="menu-desc font-text italic olive">Большой вечерний ужин, музыка, вино и открытая площадь фестиваля.</p>
@@ -467,12 +481,12 @@
 
                                 <!-- Day 3 -->
                                 <div class="program-day" id="day3">
-                                    <h3 class="day-title font-display italic text-center mb-5">Последний кусок</h3>
+                                    <h3 class="day-title font-display italic text-center mb-5 dark-wood">Последний кусок</h3>
 
                                     <div class="menu-item">
                                         <div class="menu-row">
                                             <span class="menu-time font-sans tomato">11:30</span>
-                                            <span class="menu-name font-display bold">Семейный pizza workshop</span>
+                                            <span class="menu-name font-display bold dark-wood">Семейный pizza workshop</span>
                                             <span class="menu-dots"></span>
                                         </div>
                                         <p class="menu-desc font-text italic olive">Формат для гостей с детьми: тесто, начинка, мини-пиццы.</p>
@@ -481,7 +495,7 @@
                                     <div class="menu-item">
                                         <div class="menu-row">
                                             <span class="menu-time font-sans tomato">13:00</span>
-                                            <span class="menu-name font-display bold">Chef’s Table Experience</span>
+                                            <span class="menu-name font-display bold dark-wood">Chef’s Table Experience</span>
                                             <span class="menu-dots"></span>
                                         </div>
                                         <p class="menu-desc font-text italic olive">Закрытая дегустация с пиццайоло и специальным региональным меню.</p>
@@ -491,7 +505,7 @@
                                     <div class="menu-item">
                                         <div class="menu-row">
                                             <span class="menu-time font-sans tomato">15:30</span>
-                                            <span class="menu-name font-display bold">Regional Pizza Awards</span>
+                                            <span class="menu-name font-display bold dark-wood">Regional Pizza Awards</span>
                                             <span class="menu-dots"></span>
                                         </div>
                                         <p class="menu-desc font-text italic olive">Неформальная премия лучших вкусов фестиваля.</p>
@@ -500,7 +514,7 @@
                                     <div class="menu-item">
                                         <div class="menu-row">
                                             <span class="menu-time font-sans tomato">18:00</span>
-                                            <span class="menu-name font-display bold">Закрывающий аперитив</span>
+                                            <span class="menu-name font-display bold dark-wood">Закрывающий аперитив</span>
                                             <span class="menu-dots"></span>
                                         </div>
                                         <p class="menu-desc font-text italic olive">Финальные дегустации и встреча гостей за большим столом.</p>
@@ -509,7 +523,7 @@
                                     <div class="menu-item">
                                         <div class="menu-row">
                                             <span class="menu-time font-sans tomato">20:00</span>
-                                            <span class="menu-name font-display bold">Final Dinner</span>
+                                            <span class="menu-name font-display bold dark-wood">Final Dinner</span>
                                             <span class="menu-dots"></span>
                                         </div>
                                         <p class="menu-desc font-text italic olive">Заключительный ужин с лучшими пиццами маршрута.</p>
@@ -522,87 +536,87 @@
             </section>
 
             <!-- 8. Featured Pizzaioli -->
-            <section id="chefs" class="section-chefs">
-                <div class="container text-center">
+            <section id="chefs" class="section-chefs" data-header-theme="light">
+                <div class="container text-center mb-6">
                     <h2 class="section-title font-display cream">I Maestri <span class="italic tomato">del Forno</span></h2>
-                    <p class="section-subtitle font-sans dough mb-6">Пиццайоло, которые привозят на фестиваль региональные традиции Италии.</p>
+                    <p class="section-subtitle font-sans dough mx-auto mt-4">Пиццайоло, которые привозят на фестиваль региональные традиции Италии.</p>
                 </div>
 
                 <div class="chefs-editorial-grid">
                     <!-- Chef 1 -->
                     <div class="chef-block">
                         <div class="chef-photo-wrapper">
-                            <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=800&q=80" alt="Marco Esposito" class="chef-photo prlx-img-slow">
+                            <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=800&q=80" alt="Marco Esposito" class="chef-photo prlx-img-slow" loading="lazy" onerror="this.onerror=null;this.classList.add('img-error');">
                             <div class="chef-gradient-overlay"></div>
                             <div class="chef-text-overlay">
-                                <h3 class="chef-name font-display">Marco Esposito</h3>
-                                <p class="chef-region font-sans">Campania &middot; Pizza Napoletana</p>
+                                <h3 class="chef-name font-display cream">Marco Esposito</h3>
+                                <p class="chef-region font-sans dough">Campania &middot; Pizza Napoletana</p>
                             </div>
                         </div>
-                        <blockquote class="chef-quote font-text italic">«Тесто помнит всё: муку, воздух, руки и огонь».</blockquote>
+                        <blockquote class="chef-quote font-text italic cream">«Тесто помнит всё: муку, воздух, руки и огонь».</blockquote>
                     </div>
 
                     <!-- Chef 2 -->
                     <div class="chef-block offset-mt">
                         <div class="chef-photo-wrapper">
-                            <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=800&q=80" alt="Elena Bianchi" class="chef-photo prlx-img-slow">
+                            <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=800&q=80" alt="Elena Bianchi" class="chef-photo prlx-img-slow" loading="lazy" onerror="this.onerror=null;this.classList.add('img-error');">
                             <div class="chef-gradient-overlay"></div>
                             <div class="chef-text-overlay">
-                                <h3 class="chef-name font-display">Elena Bianchi</h3>
-                                <p class="chef-region font-sans">Lazio &middot; Pizza al Taglio</p>
+                                <h3 class="chef-name font-display cream">Elena Bianchi</h3>
+                                <p class="chef-region font-sans dough">Lazio &middot; Pizza al Taglio</p>
                             </div>
                         </div>
-                        <blockquote class="chef-quote font-text italic">«Римская пицца — это ритм: хрустящий, щедрый и уличный».</blockquote>
+                        <blockquote class="chef-quote font-text italic cream">«Римская пицца — это ритм: хрустящий, щедрый и уличный».</blockquote>
                     </div>
 
                     <!-- Chef 3 -->
                     <div class="chef-block">
                         <div class="chef-photo-wrapper">
-                            <img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&w=800&q=80" alt="Salvatore Greco" class="chef-photo prlx-img-slow">
+                            <img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&w=800&q=80" alt="Salvatore Greco" class="chef-photo prlx-img-slow" loading="lazy" onerror="this.onerror=null;this.classList.add('img-error');">
                             <div class="chef-gradient-overlay"></div>
                             <div class="chef-text-overlay">
-                                <h3 class="chef-name font-display">Salvatore Greco</h3>
-                                <p class="chef-region font-sans">Sicilia &middot; Sfincione</p>
+                                <h3 class="chef-name font-display cream">Salvatore Greco</h3>
+                                <p class="chef-region font-sans dough">Sicilia &middot; Sfincione</p>
                             </div>
                         </div>
-                        <blockquote class="chef-quote font-text italic">«Сицилийская пицца громче, теплее и всегда с историей».</blockquote>
+                        <blockquote class="chef-quote font-text italic cream">«Сицилийская пицца громче, теплее и всегда с историей».</blockquote>
                     </div>
 
                     <!-- Chef 4 -->
                     <div class="chef-block offset-mt">
                         <div class="chef-photo-wrapper">
-                            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80" alt="Chiara Romano" class="chef-photo prlx-img-slow">
+                            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80" alt="Chiara Romano" class="chef-photo prlx-img-slow" loading="lazy" onerror="this.onerror=null;this.classList.add('img-error');">
                             <div class="chef-gradient-overlay"></div>
                             <div class="chef-text-overlay">
-                                <h3 class="chef-name font-display">Chiara Romano</h3>
-                                <p class="chef-region font-sans">Puglia &middot; Focaccia Barese</p>
+                                <h3 class="chef-name font-display cream">Chiara Romano</h3>
+                                <p class="chef-region font-sans dough">Puglia &middot; Focaccia Barese</p>
                             </div>
                         </div>
-                        <blockquote class="chef-quote font-text italic">«Оливковое масло — не ингредиент. Это начало».</blockquote>
+                        <blockquote class="chef-quote font-text italic cream">«Оливковое масло — не ингредиент. Это начало».</blockquote>
                     </div>
                 </div>
             </section>
 
             <!-- 9. Atmosphere Photo Essay -->
-            <section id="atmosphere" class="section-atmosphere">
+            <section id="atmosphere" class="section-atmosphere" data-header-theme="dark">
                 <div class="container text-center mb-6">
-                    <h2 class="section-title font-display">Огонь, мука и базилик</h2>
+                    <h2 class="section-title font-display dark-wood">Огонь, мука и базилик</h2>
                     <div class="decorative-sub font-display italic tomato">Fuoco, Farina e Basilico</div>
-                    <p class="section-subtitle font-sans max-w-600 mx-auto mt-4 text-dark-wood">Тепло печи, руки в муке, томаты на деревянном столе и запах теста, который собирает гостей вокруг огня.</p>
+                    <p class="section-subtitle font-sans max-w-600 mx-auto mt-4 olive">Тепло печи, руки в муке, томаты на деревянном столе и запах теста, который собирает гостей вокруг огня.</p>
                 </div>
 
                 <div class="photo-essay-grid">
                     <div class="essay-item oven">
-                        <img src="https://images.unsplash.com/photo-1555072956-7758afb20e8f?auto=format&fit=crop&w=1200&q=80" alt="Дровяная печь" class="prlx-img">
+                        <img src="https://images.unsplash.com/photo-1555072956-7758afb20e8f?auto=format&fit=crop&w=1200&q=80" alt="Дровяная печь" class="prlx-img" loading="lazy" onerror="this.onerror=null;this.classList.add('img-error');">
                     </div>
                     <div class="essay-item text-vertical bg-dough">
                         <span class="vertical-title font-sans">PASSIONE</span>
                     </div>
                     <div class="essay-item ingredients">
-                        <img src="https://images.unsplash.com/photo-1590947132387-155cc3ddf6b9?auto=format&fit=crop&w=800&q=80" alt="Ингредиенты" class="prlx-img">
+                        <img src="https://images.unsplash.com/photo-1590947132387-155cc3ddf6b9?auto=format&fit=crop&w=800&q=80" alt="Ингредиенты" class="prlx-img" loading="lazy" onerror="this.onerror=null;this.classList.add('img-error');">
                     </div>
                     <div class="essay-item dough">
-                        <img src="https://images.unsplash.com/photo-1541592102400-14e286278d54?auto=format&fit=crop&w=800&q=80" alt="Тесто" class="prlx-img">
+                        <img src="https://images.unsplash.com/photo-1541592102400-14e286278d54?auto=format&fit=crop&w=800&q=80" alt="Тесто" class="prlx-img" loading="lazy" onerror="this.onerror=null;this.classList.add('img-error');">
                     </div>
                     <div class="essay-item text-block bg-brick">
                         <p class="font-text italic cream text-lg">Настоящая пицца рождается в руках ремесленника. Каждый регион сохраняет свой секрет влажности теста, выбора томатов и времени выпекания.</p>
@@ -612,11 +626,11 @@
             </section>
 
             <!-- 10. Tickets / Reservation -->
-            <section id="tickets" class="section-tickets">
+            <section id="tickets" class="section-tickets" data-header-theme="light">
                 <div class="container text-center mb-6">
                     <h2 class="section-title font-display cream">Забронировать билет</h2>
                     <div class="decorative-sub font-display italic tomato">Reserve Your Slice</div>
-                    <p class="section-subtitle font-sans dough mt-4">Выберите свой формат гастрономического путешествия по регионам Италии.</p>
+                    <p class="section-subtitle font-sans dough mt-4 mx-auto">Выберите свой формат гастрономического путешествия по регионам Италии.</p>
                 </div>
 
                 <div class="tickets-container">
@@ -625,22 +639,22 @@
                         <div class="ticket-perforation top"></div>
                         <div class="ticket-content">
                             <div class="ticket-head">
-                                <span class="ticket-serial font-sans">TKT-001</span>
-                                <h3 class="ticket-name font-display">Single Tasting Pass</h3>
+                                <span class="ticket-serial font-sans dark-wood">TKT-001</span>
+                                <h3 class="ticket-name font-display dark-wood">Single Tasting Pass</h3>
                             </div>
                             <div class="ticket-price font-sans tomato">2 500 &#8381;</div>
-                            <ul class="ticket-includes font-text">
+                            <ul class="ticket-includes font-text dark-wood">
                                 <li>вход на фестиваль</li>
                                 <li>2 региональных слайса</li>
                                 <li>1 напиток</li>
                                 <li>доступ к зоне Pizza Atlas</li>
                             </ul>
-                            <div class="ticket-action">
-                                <button class="btn-stamp primary magnetic-btn w-full" data-strength="20">Забронировать</button>
+                            <div class="ticket-action mt-4">
+                                <button class="btn-stamp primary magnetic-btn w-full">Забронировать</button>
                             </div>
                         </div>
                         <div class="ticket-perforation bottom"></div>
-                        <div class="ticket-stub font-sans">Giro di Pizza &middot; Москва &middot; 2026</div>
+                        <div class="ticket-stub font-sans dark-wood">Giro di Pizza &middot; Москва &middot; 2026</div>
                     </div>
 
                     <!-- Ticket 2 -->
@@ -659,8 +673,8 @@
                                 <li>Wood-Fired Oven Show</li>
                                 <li>фестивальный постер в подарок</li>
                             </ul>
-                            <div class="ticket-action">
-                                <button class="btn-stamp secondary magnetic-btn w-full" data-strength="20">Выбрать маршрут</button>
+                            <div class="ticket-action mt-4">
+                                <button class="btn-stamp secondary magnetic-btn w-full">Выбрать маршрут</button>
                             </div>
                             <div class="red-stamp bg-cream tomato rotate-stamp">Best Value</div>
                         </div>
@@ -684,8 +698,8 @@
                                 <li>behind-the-oven session</li>
                                 <li>зарезервированный стол</li>
                             </ul>
-                            <div class="ticket-action">
-                                <button class="btn-stamp secondary magnetic-btn w-full" data-strength="20">Занять место</button>
+                            <div class="ticket-action mt-4">
+                                <button class="btn-stamp secondary magnetic-btn w-full">Занять место</button>
                             </div>
                         </div>
                         <div class="ticket-perforation bottom"></div>
@@ -695,7 +709,7 @@
             </section>
 
             <!-- 11. Final CTA / Footer -->
-            <footer class="editorial-footer">
+            <footer class="editorial-footer" data-header-theme="dark">
                 <div class="footer-bg-map-layer"></div>
                 <div class="container footer-layout">
                     <div class="footer-main">
@@ -707,20 +721,20 @@
 
                         <div class="footer-info font-sans">
                             <p class="font-display text-xl mb-2 dark-wood">Giro di Pizza</p>
-                            <p>Москва &middot; 15–17 мая 2026</p>
-                            <p>Площадка: Piazza del Gusto / гастрономическое пространство в центре города</p>
+                            <p class="dark-wood">Москва &middot; 15–17 мая 2026</p>
+                            <p class="dark-wood">Площадка: Piazza del Gusto / гастрономическое пространство в центре города</p>
                             <p class="tomato mt-2 uppercase tracking-wide">Билеты уже доступны</p>
                         </div>
                     </div>
 
                     <div class="footer-nav">
                         <div class="footer-links font-sans">
-                            <a href="#program" class="magnetic-btn" data-strength="10">Программа</a>
-                            <a href="#atlas" class="magnetic-btn" data-strength="10">Карта вкусов</a>
-                            <a href="#tickets" class="magnetic-btn" data-strength="10">Билеты</a>
-                            <a href="#" class="magnetic-btn" data-strength="10">Instagram</a>
-                            <a href="#" class="magnetic-btn" data-strength="10">Пресса</a>
-                            <a href="#" class="magnetic-btn" data-strength="10">Контакты</a>
+                            <a href="#program" class="magnetic-btn">Программа</a>
+                            <a href="#atlas" class="magnetic-btn">Карта вкусов</a>
+                            <a href="#tickets" class="magnetic-btn">Билеты</a>
+                            <a href="#" class="magnetic-btn">Instagram</a>
+                            <a href="#" class="magnetic-btn">Пресса</a>
+                            <a href="#" class="magnetic-btn">Контакты</a>
                         </div>
 
                         <div class="footer-decor">

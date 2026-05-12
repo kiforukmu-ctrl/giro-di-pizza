@@ -1,6 +1,6 @@
 /* ==========================================================================
    Giro di Pizza - Interactive Logic & Animations
-   Using GSAP, ScrollTrigger, and D3.js
+   Optimized for Performance and Stability
    ========================================================================== */
 
 // --- Data ---
@@ -40,89 +40,127 @@ const pizzaData = {
     "Sardegna": { num: "No. 12", type: "Panada", stamp: "Остров", color: "var(--terracotta-shadow)", ingredients: "мясо · шафран", desc: "Закрытая деревенская выпечка." },
     "Abruzzo": { num: "No. 13", type: "Pizza Abruzzese", stamp: "Горы", color: "var(--basil-green)", ingredients: "пекорино · трюфель", desc: "Лесной аромат." },
     "Marche": { num: "No. 14", type: "Pizza Rossini", stamp: "Пезаро", color: "var(--olive-green)", ingredients: "маргарита · яйцо", desc: "Локальная классика." },
-    "Umbria": { num: "No. 15", type: "Torta al Testo", stamp: "Традиция", color: "var(--baked-dough)", ingredients: "лепешка · зелень", desc: "Лепешка на камне." }
+    "Umbria": { num: "No. 15", type: "Torta al Testo", stamp: "Традиция", color: "var(--baked-dough)", ingredients: "лепешка · зелень", desc: "Лепешка на камне." },
+    "Trentino-Alto Adige": { num: "No. 16", type: "Pizza Speck", stamp: "Альпы", color: "var(--tomato-red)", ingredients: "спек · горгонзола", desc: "Альпийский рецепт." },
+    "Friuli-Venezia Giulia": { num: "No. 17", type: "San Daniele", stamp: "Прошутто", color: "var(--deep-brick)", ingredients: "прошутто · руккола", desc: "Ломтики прошутто на основе." },
+    "Basilicata": { num: "No. 18", type: "Schiacciata Lucana", stamp: "Круско", color: "var(--olive-green)", ingredients: "перец круско · чеснок", desc: "Выпечка с сушеным перцем." },
+    "Molise": { num: "No. 19", type: "Di Grandinye", stamp: "Рустика", color: "var(--baked-dough)", ingredients: "мука · качокавалло", desc: "Рустикальная пицца." },
+    "Valle d'Aosta": { num: "No. 20", type: "Valdostana", stamp: "Горы", color: "var(--terracotta-shadow)", ingredients: "сыр фонтина · ветчина", desc: "Горный рецепт." }
 };
 
-// --- Initialization ---
-gsap.registerPlugin(ScrollTrigger);
-
+// --- Global Variables ---
 let mapSvg, mapProjection, mapPath, mapRegions;
+const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isMobile = window.innerWidth <= 768;
 
+// --- Initialization ---
 document.addEventListener("DOMContentLoaded", () => {
-    initCursor();
+    // Only register GSAP if reduced motion is false
+    if (!isReducedMotion) {
+        gsap.registerPlugin(ScrollTrigger);
+    }
+
     initLoader();
     initMap();
     initAtlas();
     initProgramTabs();
 
-    // Defer heavy animations slightly
-    setTimeout(() => {
-        initScrollAnimations();
-        initMagneticButtons();
-    }, 100);
+    // Ensure all images are loaded before initializing complex scroll triggers
+    Promise.all(Array.from(document.images).filter(img => !img.complete).map(img => new Promise(resolve => { img.onload = img.onerror = resolve; }))).then(() => {
+        if (!isReducedMotion) {
+            initScrollAnimations();
+            initMagneticButtons();
+            initHeaderThemeLogic();
+            ScrollTrigger.refresh();
+        }
+    });
+});
+
+// Refresh ScrollTrigger on window resize to prevent broken layouts
+window.addEventListener('resize', () => {
+    if (!isReducedMotion) {
+        // Debounce refresh
+        clearTimeout(window.resizeTimer);
+        window.resizeTimer = setTimeout(() => {
+            ScrollTrigger.refresh();
+        }, 250);
+    }
 });
 
 // --- Loader & Intro Sequence ---
 function initLoader() {
+    const loader = document.getElementById('loader');
+    if (!loader) return;
+
+    if (isReducedMotion) {
+        loader.style.display = 'none';
+        return;
+    }
+
     const tl = gsap.timeline();
 
-    tl.to("#loader-bar", { width: "100%", duration: 1.5, ease: "power2.inOut" })
-      .to("#loader", { yPercent: -100, duration: 1, ease: "power4.inOut", delay: 0.2 })
-      .add("heroReveal", "-=0.5")
+    tl.to("#loader-bar", { width: "100%", duration: 1, ease: "power2.inOut" })
+      .to("#loader", { yPercent: -100, duration: 0.8, ease: "power3.inOut", delay: 0.1 })
+      .add("heroReveal", "-=0.4")
 
       // Hero reveal
-      .from(".hero-bg-img", { scale: 1.2, duration: 2, ease: "power2.out" }, "heroReveal")
-      .from(".hero-title .word", { y: "100%", duration: 1, stagger: 0.1, ease: "power3.out" }, "heroReveal")
-      .from(".reveal-text", { opacity: 0, y: 20, duration: 1, stagger: 0.1, ease: "power2.out" }, "heroReveal+=0.3");
+      .from(".hero-bg-img", { scale: 1.1, duration: 1.5, ease: "power2.out" }, "heroReveal")
+      .from(".hero-title .word", { y: "100%", duration: 0.8, stagger: 0.05, ease: "power3.out" }, "heroReveal")
+      .from(".reveal-text", { opacity: 0, y: 15, duration: 0.8, stagger: 0.1, ease: "power2.out" }, "heroReveal+=0.2");
 }
 
-// --- Custom Cursor ---
-function initCursor() {
-    const cursor = document.getElementById('custom-cursor');
-    if (!cursor) return;
+// --- Header Theme Logic ---
+function initHeaderThemeLogic() {
+    const header = document.getElementById('header');
+    if (!header) return;
 
-    // Check if device supports hover
-    if (window.matchMedia("(pointer: coarse)").matches) return;
-
-    gsap.set(cursor, { xPercent: -50, yPercent: -50 });
-
-    const pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-    const mouse = { x: pos.x, y: pos.y };
-    const speed = 0.2;
-
-    window.addEventListener("mousemove", e => {
-        mouse.x = e.x;
-        mouse.y = e.y;
+    // Change header theme based on section background
+    document.querySelectorAll('[data-header-theme]').forEach(section => {
+        ScrollTrigger.create({
+            trigger: section,
+            start: "top 80px", // Offset by header height
+            end: "bottom 80px",
+            onEnter: () => setHeaderTheme(section.dataset.headerTheme),
+            onEnterBack: () => setHeaderTheme(section.dataset.headerTheme),
+        });
     });
 
-    gsap.ticker.add(() => {
-        const dt = 1.0 - Math.pow(1.0 - speed, gsap.ticker.deltaRatio());
-        pos.x += (mouse.x - pos.x) * dt;
-        pos.y += (mouse.y - pos.y) * dt;
-        gsap.set(cursor, { x: pos.x, y: pos.y });
-    });
-
-    // Hover states
-    document.querySelectorAll('a, button, .magnetic-btn').forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.classList.add('hover-btn'));
-        el.addEventListener('mouseleave', () => cursor.classList.remove('hover-btn'));
-    });
-
-    const mapContainer = document.getElementById('d3-map-container');
-    if (mapContainer) {
-        mapContainer.addEventListener('mouseenter', () => cursor.classList.add('hover-map'));
-        mapContainer.addEventListener('mouseleave', () => cursor.classList.remove('hover-map'));
+    function setHeaderTheme(theme) {
+        if (theme === 'dark') {
+            header.classList.remove('header--light');
+            header.classList.add('header--dark');
+        } else {
+            header.classList.remove('header--dark');
+            header.classList.add('header--light');
+        }
     }
+
+    // Hide/Show on scroll direction
+    const showAnim = gsap.from(header, {
+      yPercent: -100,
+      paused: true,
+      duration: 0.3,
+      ease: "power2.out"
+    }).progress(1);
+
+    ScrollTrigger.create({
+      start: "top top",
+      end: 99999,
+      onUpdate: (self) => {
+        if (self.direction === -1) { showAnim.play(); } // scrolling up
+        else if (self.direction === 1 && self.scrollY > 150) { showAnim.reverse(); } // scrolling down
+      }
+    });
 }
 
 // --- Magnetic Buttons ---
 function initMagneticButtons() {
-    if (window.matchMedia("(pointer: coarse)").matches) return;
+    if (isMobile) return; // Disable on touch devices
 
     const magnets = document.querySelectorAll('.magnetic-btn');
 
     magnets.forEach(magnet => {
-        const strength = magnet.getAttribute('data-strength') || 20;
+        const strength = magnet.getAttribute('data-strength') || 15;
 
         magnet.addEventListener('mousemove', (e) => {
             const bounding = magnet.getBoundingClientRect();
@@ -170,46 +208,31 @@ function initMap() {
     d3.json("https://raw.githubusercontent.com/openpolis/geojson-italy/master/geojson/limits_IT_regions.geojson")
       .then(function(italy) {
 
-        // Add subtle shadow filter
-        const defs = mapSvg.append("defs");
-        const filter = defs.append("filter").attr("id", "drop-shadow").attr("height", "130%");
-        filter.append("feGaussianBlur").attr("in", "SourceAlpha").attr("stdDeviation", 3).attr("result", "blur");
-        filter.append("feOffset").attr("dx", 2).attr("dy", 5).attr("result", "offsetBlur");
-        const feMerge = filter.append("feMerge");
-        feMerge.append("feMergeNode").attr("in", "offsetBlur");
-        feMerge.append("feMergeNode").attr("in", "SourceGraphic");
-
         mapRegions = mapSvg.selectAll("path")
             .data(italy.features)
             .enter()
             .append("path")
             .attr("d", mapPath)
             .attr("class", "region")
-            .attr("id", d => "map-" + d.properties.reg_name.replace(/[^a-zA-Z0-9]/g, '-'))
-            .style("filter", "url(#drop-shadow)")
-            .on("mouseenter", handleRegionHover)
+            // .attr("id", d => "map-" + d.properties.reg_name.replace(/[^a-zA-Z0-9]/g, '-')) // Optional, not strictly needed
             .on("click", handleRegionClick);
 
-        // Map intro animation
-        ScrollTrigger.create({
-            trigger: ".section-map",
-            start: "top 70%",
-            onEnter: () => {
-                gsap.fromTo(mapRegions.nodes(),
-                    { opacity: 0, y: 20 },
-                    { opacity: 1, y: 0, duration: 0.5, stagger: 0.03, ease: "power2.out" }
-                );
-            },
-            once: true
-        });
+        // Map intro animation (only if not reduced motion)
+        if (!isReducedMotion) {
+            ScrollTrigger.create({
+                trigger: ".section-map",
+                start: "top 70%",
+                onEnter: () => {
+                    gsap.fromTo(mapRegions.nodes(),
+                        { opacity: 0 },
+                        { opacity: 1, duration: 0.5, stagger: 0.01, ease: "power1.out" }
+                    );
+                },
+                once: true
+            });
+        }
 
     }).catch(err => console.error("Map loading error:", err));
-}
-
-function handleRegionHover(event, d) {
-    if(!d3.select(this).classed("active")) {
-        this.parentNode.appendChild(this); // Bring to front
-    }
 }
 
 function handleRegionClick(event, d) {
@@ -223,17 +246,13 @@ function highlightMapRegion(regionName) {
 
     mapRegions.classed("active", false);
 
-    let matchedPath = null;
     mapRegions.each(function(d) {
         if (d.properties.reg_name.includes(regionName) || regionName.includes(d.properties.reg_name)) {
-            matchedPath = this;
+            d3.select(this).classed("active", true);
+            // Optimization: avoid appendChild (DOM manipulation) on hover/scroll if possible.
+            // Only do it on click or if necessary for z-index layering.
         }
     });
-
-    if (matchedPath) {
-        d3.select(matchedPath).classed("active", true);
-        matchedPath.parentNode.appendChild(matchedPath);
-    }
 }
 
 function updatePassportCard(rawRegionName) {
@@ -252,25 +271,30 @@ function updatePassportCard(rawRegionName) {
         }
     }
 
-    if(!data) return; // Ignore if no data
+    if(!data) return;
 
-    // Animate card content change
-    gsap.to(card, {
-        opacity: 0, y: 10, duration: 0.2, ease: "power1.in",
-        onComplete: () => {
-            document.getElementById("passport-num").textContent = data.num;
-            document.getElementById("passport-region").textContent = regionName;
-            document.getElementById("passport-pizza").textContent = data.type;
-            document.getElementById("passport-ingredients").textContent = data.ingredients;
-            document.getElementById("passport-stamp").textContent = data.stamp;
+    if (isReducedMotion) {
+        setCardData(data, regionName);
+    } else {
+        gsap.to(card, {
+            opacity: 0.5, scale: 0.98, duration: 0.15, ease: "power1.in",
+            onComplete: () => {
+                setCardData(data, regionName);
+                gsap.to(card, { opacity: 1, scale: 1, duration: 0.25, ease: "power2.out" });
+            }
+        });
+    }
+}
 
-            // Optional: Change icon color based on region
-            const icon = document.querySelector(".passport-stamp-icon svg path");
-            if(icon) icon.setAttribute("fill", data.color);
+function setCardData(data, regionName) {
+    document.getElementById("passport-num").textContent = data.num;
+    document.getElementById("passport-region").textContent = regionName;
+    document.getElementById("passport-pizza").textContent = data.type;
+    document.getElementById("passport-ingredients").textContent = data.ingredients;
+    document.getElementById("passport-stamp").textContent = data.stamp;
 
-            gsap.to(card, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" });
-        }
-    });
+    const icon = document.querySelector(".passport-stamp-icon svg path");
+    if(icon) icon.setAttribute("fill", data.color);
 }
 
 // --- Pizza Atlas (Horizontal Scroll) ---
@@ -294,8 +318,8 @@ function initAtlas() {
     }
     track.innerHTML = html;
 
-    // Horizontal Scroll via ScrollTrigger
-    if (window.innerWidth > 1024) {
+    // Horizontal Scroll via ScrollTrigger - Disable on mobile
+    if (!isMobile && !isReducedMotion) {
         gsap.to(track, {
             x: () => -(track.scrollWidth - document.querySelector('.atlas-horizontal-scroll').clientWidth) + "px",
             ease: "none",
@@ -325,32 +349,17 @@ function initProgramTabs() {
             const targetId = tab.getAttribute('data-target');
             document.getElementById(targetId).classList.add('active');
 
-            // Small reveal animation for items
-            gsap.from(`#${targetId} .menu-item`, {
-                y: 10, opacity: 0, duration: 0.4, stagger: 0.05, ease: "power2.out"
-            });
+            if (!isReducedMotion) {
+                gsap.from(`#${targetId} .menu-item`, {
+                    y: 10, opacity: 0, duration: 0.3, stagger: 0.05, ease: "power1.out"
+                });
+            }
         });
     });
 }
 
 // --- Advanced Scroll Animations ---
 function initScrollAnimations() {
-
-    // Header hide/show on scroll direction
-    const showAnim = gsap.from('.editorial-header', {
-      yPercent: -100,
-      paused: true,
-      duration: 0.3
-    }).progress(1);
-
-    ScrollTrigger.create({
-      start: "top top",
-      end: "max",
-      onUpdate: (self) => {
-        if (self.direction === -1) { showAnim.play(); } // scrolling up
-        else if (self.direction === 1 && self.scrollY > 100) { showAnim.reverse(); } // scrolling down
-      }
-    });
 
     // Parallax Images
     gsap.utils.toArray('.prlx-img').forEach(img => {
@@ -361,10 +370,9 @@ function initScrollAnimations() {
         });
     });
 
-    // Slower Parallax for Chefs
     gsap.utils.toArray('.prlx-img-slow').forEach(img => {
         gsap.to(img, {
-            yPercent: 10,
+            yPercent: 8,
             ease: "none",
             scrollTrigger: { trigger: img.parentElement, start: "top bottom", end: "bottom top", scrub: true }
         });
@@ -372,17 +380,16 @@ function initScrollAnimations() {
 
     // Image Reveals (Wipe effect)
     gsap.utils.toArray('.img-reveal-wrapper').forEach(wrapper => {
-        // Create an overlay div
         const overlay = document.createElement('div');
-        overlay.style.cssText = "position:absolute; top:0; left:0; width:100%; height:100%; background:var(--dark-wood); z-index:2; transform-origin:bottom;";
+        overlay.style.cssText = "position:absolute; top:0; left:0; width:100%; height:100%; background:var(--warm-cream); z-index:2; transform-origin:top;";
         wrapper.appendChild(overlay);
         wrapper.style.position = "relative";
 
         gsap.to(overlay, {
             scaleY: 0,
-            duration: 1.2,
-            ease: "power3.inOut",
-            scrollTrigger: { trigger: wrapper, start: "top 80%" }
+            duration: 1,
+            ease: "power2.inOut",
+            scrollTrigger: { trigger: wrapper, start: "top 75%" }
         });
     });
 
