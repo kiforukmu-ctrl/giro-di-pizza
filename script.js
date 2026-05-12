@@ -100,7 +100,7 @@ function initLoader() {
     const tl = gsap.timeline();
 
     tl.to("#loader-bar", { width: "100%", duration: 1, ease: "power2.inOut" })
-      .to("#loader", { yPercent: -100, duration: 0.8, ease: "power3.inOut", delay: 0.1 })
+      .to("#loader", { yPercent: -100, duration: 0.8, ease: "power3.inOut", delay: 0.1, onComplete: () => { document.getElementById('loader').style.display = 'none'; } })
       .add("heroReveal", "-=0.4")
 
       // Hero reveal
@@ -108,7 +108,6 @@ function initLoader() {
       .from(".hero-title .word", { y: "100%", duration: 0.8, stagger: 0.05, ease: "power3.out" }, "heroReveal")
       .from(".reveal-text", { opacity: 0, y: 15, duration: 0.8, stagger: 0.1, ease: "power2.out" }, "heroReveal+=0.2");
 }
-
 // --- Header Theme Logic ---
 function initHeaderThemeLogic() {
     const header = document.getElementById('header');
@@ -241,6 +240,7 @@ function handleRegionClick(event, d) {
     updatePassportCard(regionName);
 }
 
+
 function highlightMapRegion(regionName) {
     if (!mapRegions) return;
 
@@ -249,8 +249,6 @@ function highlightMapRegion(regionName) {
     mapRegions.each(function(d) {
         if (d.properties.reg_name.includes(regionName) || regionName.includes(d.properties.reg_name)) {
             d3.select(this).classed("active", true);
-            // Optimization: avoid appendChild (DOM manipulation) on hover/scroll if possible.
-            // Only do it on click or if necessary for z-index layering.
         }
     });
 }
@@ -297,7 +295,8 @@ function setCardData(data, regionName) {
     if(icon) icon.setAttribute("fill", data.color);
 }
 
-// --- Pizza Atlas (Horizontal Scroll) ---
+
+// --- Pizza Atlas (Standard Horizontal Scroll/Swipe) ---
 function initAtlas() {
     const track = document.getElementById("atlas-track");
     if (!track) return;
@@ -317,25 +316,9 @@ function initAtlas() {
         `;
     }
     track.innerHTML = html;
-
-    // Horizontal Scroll via ScrollTrigger - Disable on mobile
-    if (!isMobile && !isReducedMotion) {
-        gsap.to(track, {
-            x: () => -(track.scrollWidth - document.querySelector('.atlas-horizontal-scroll').clientWidth) + "px",
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".section-atlas",
-                pin: true,
-                scrub: 1,
-                start: "center center",
-                end: () => "+=" + track.scrollWidth,
-                invalidateOnRefresh: true
-            }
-        });
-    }
 }
 
-// --- Festival Program Tabs ---
+// --- Festival Program Tabs
 function initProgramTabs() {
     const tabs = document.querySelectorAll('.tab-btn');
     const contents = document.querySelectorAll('.program-day');

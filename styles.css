@@ -167,11 +167,7 @@ body.editorial-theme {
 .loader-progress-bar { width: 0%; height: 100%; background-color: var(--tomato-red); }
 
 /* --- Fixed Header --- */
-.editorial-header {
-    position: fixed; top: 0; left: 0; width: 100%;
-    z-index: var(--z-header);
-    transition: transform 0.4s var(--ease-out-expo), background-color 0.3s, color 0.3s, border-color 0.3s;
-}
+.editorial-header { position: fixed; top: 0; left: 0; width: 100%; padding: 1.5rem 5vw; display: flex; justify-content: center; z-index: var(--z-header); transition: background-color 0.4s var(--ease-out-expo), color 0.4s var(--ease-out-expo), transform 0.4s var(--ease-out-expo); }
 .header-inner {
     padding: 1.5rem 5vw;
     display: flex; justify-content: space-between; align-items: center;
@@ -212,12 +208,7 @@ body.editorial-theme {
 }
 
 /* --- 3. Cinematic Hero --- */
-.section-hero {
-    position: relative; min-height: 100svh; width: 100%;
-    display: flex; align-items: center; justify-content: center;
-    background-color: var(--charred-oven-black); overflow: hidden;
-    padding: calc(80px + 2rem) 5vw 4rem; /* Ensure content doesn't hit header or bottom */
-}
+.section-hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; padding: var(--section-pad); padding-bottom: 8vw; overflow: hidden; }
 .hero-bg-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: var(--z-background); }
 .hero-bg-img { width: 100%; height: 120%; object-fit: cover; object-position: center; }
 .hero-overlay {
@@ -269,10 +260,9 @@ body.editorial-theme {
 .journey-chapters { display: flex; flex-direction: column; }
 
 /* Split Layout Fixes */
-.chapter-spread {
-    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    min-height: 100svh; width: 100%; overflow: hidden;
-}
+.chapter-spread { display: grid; grid-template-columns: 1fr 1fr; width: 100%; overflow: hidden; align-items: stretch; }
+.chapter-content { display: flex; flex-direction: column; justify-content: center; padding: clamp(48px, 6vw, 96px); height: 100%; }
+.chapter-image { height: 100%; position: relative; }
 .chapter-spread.reverse { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
 .chapter-spread.reverse .chapter-content { order: 2; }
 .chapter-spread.reverse .chapter-image { order: 1; }
@@ -309,9 +299,10 @@ body.editorial-theme {
 
 /* --- 6. Pizza Atlas --- */
 .section-atlas { padding: var(--section-pad) 0; background-color: var(--warm-cream); overflow: hidden; border-bottom: 1px solid rgba(44,30,22,0.1); }
-.atlas-horizontal-scroll { width: 100%; padding-top: 2rem; padding-bottom: 4rem; overflow-x: auto; /* Fallback */ }
+.atlas-horizontal-scroll { width: 100%; padding-top: 2rem; padding-bottom: 4rem; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.atlas-horizontal-scroll::-webkit-scrollbar { display: none; }
 .atlas-track { display: flex; gap: 3vw; padding: 0 5vw; width: max-content; }
-.atlas-card {
+.atlas-card { scroll-snap-align: start; flex-shrink: 0;
     width: 350px; height: 480px; background-color: var(--mozzarella-white);
     padding: 2.5rem; border: 1px solid var(--dark-wood); position: relative;
     box-shadow: 10px 10px 0 rgba(44,30,22,0.05);
@@ -466,8 +457,9 @@ body.editorial-theme {
     .hero-cta { flex-direction: column; width: 100%; }
     .btn-stamp { width: 100%; text-align: center; }
 
-    .atlas-horizontal-scroll { overflow-x: auto; padding-bottom: 2rem; scroll-snap-type: x mandatory; }
-    .atlas-card { scroll-snap-align: center; width: 85vw; height: auto; min-height: 400px; }
+    .atlas-horizontal-scroll { width: 100%; padding-top: 2rem; padding-bottom: 4rem; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.atlas-horizontal-scroll::-webkit-scrollbar { display: none; }
+    .atlas-card { scroll-snap-align: start; flex-shrink: 0;  scroll-snap-align: center; width: 85vw; height: auto; min-height: 400px; }
 
     .festival-ticket { width: 100%; }
     .premium-scale { transform: none; }
@@ -490,3 +482,25 @@ body.editorial-theme {
     .img-reveal-wrapper > div { display: none; }
     .reveal-text { opacity: 1 !important; transform: none !important; }
 }
+/* --- Image Fallbacks --- */
+.is-img-error img { display: none !important; }
+.img-fallback { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--baked-dough); color: var(--dark-wood); align-items: center; justify-content: center; text-align: center; padding: 1rem; }
+.is-img-error .img-fallback { display: flex; }
+
+.stamp-light { color: var(--warm-cream); border-color: var(--warm-cream); }
+.stamp-dark { color: var(--dark-wood); border-color: var(--dark-wood); }
+.stamp-olive { color: var(--olive-green); border-color: var(--olive-green); }
+.stamp-terracotta { color: var(--tomato-red); border-color: var(--tomato-red); }
+.stamp-light-olive { color: var(--olive-green); border-color: var(--olive-green); }
+.stamp-light-brick { color: var(--deep-brick); border-color: var(--deep-brick); }
+
+.img-wrapper { width: 100%; height: 100%; position: relative; overflow: hidden; }
+.img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+
+
+
+.editorial-header { display: flex; justify-content: center; width: 100%; padding: 1.5rem 5vw; }
+.header-inner { width: 100%; max-width: var(--container-max); display: flex; justify-content: space-between; align-items: center; }
+.header-left, .header-right { flex: 1; }
+.header-center { flex: 2; text-align: center; }
+.header-right { text-align: right; }
